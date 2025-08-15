@@ -1,0 +1,70 @@
+baseURL: https://e47556.github.io/
+languageCode: ko
+languageName: 한국어
+enableRobotsTXT: true
+languages:
+  ko: {}
+hasCJKLanguage: true
+title: 또 잊어먹음
+theme: loveit
+taxonomies:
+  tag: tags
+menu:
+  main:
+    - name: Post
+      pageRef: /posts
+      weight: 1
+    - name: Tag
+      pageRef: /tags
+      weight: 2
+    - name: About
+      pageRef: /about
+      weight: 3
+params:
+  description: "자꾸 잊어버려요"
+  author:
+    name: e47556
+    email: e47556@gmail.com
+    link: /about
+  header:
+    title: null
+  footer:
+    copyright: false
+    hugo: false
+    author: false
+  app:
+    title: "또 잊어먹음"
+  search:
+    enable: true
+    type: lunr
+  home:
+    profile:
+      enable: false
+  page:
+    comment:
+      enable: true
+      utterances:
+        enable: true
+        repo: e47556/e47556.github.io
+    share:
+      enable: false
+  analytics:
+    enable: true
+    google:
+      id: G-BRMWBD6QN4
+  verification:
+    google: gYUJ939-D6KPy4t4GcZxDWcHiWMKNPfIC32H4E88L00
+    naver: 87533d55e27739689e6e81d2b25337c4df44138f
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+  page:
+    - HTML
+  section:
+    - HTML
+    - RSS
+  taxonomy:
+    - HTML
+    - RSS
