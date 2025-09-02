@@ -27,7 +27,8 @@ async function main() {
 
     const escapedName = name
         .replaceAll(' ', '_')
-        .replaceAll('?', '');
+        .replaceAll('?', '')
+        .replaceAll(/\([^)]+\)/g, '');
 
     const now = new Date();
     const year = now.getFullYear();
@@ -35,18 +36,20 @@ async function main() {
     const day = String(now.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
 
-    console.log(formattedDate);
-
-    execSync(`hugo new content ./content/posts/${formattedDate}-${escapedName}/index.md`, { cwd: __dirname, stdio: 'inherit' });
+    const postPath = `./content/posts/${formattedDate}-${escapedName}`;
+    execSync(`hugo new content ${postPath}/index.md`, { cwd: __dirname, stdio: 'inherit' });
 
     if (isRidi) {
-        const imgPath = path.join(__dirname, `./content/posts/${formattedDate}-${escapedName}/cover.webp`)
+        const imgPath = path.join(__dirname, `${postPath}/cover.webp`)
         const imgUrl = `https://img.ridicdn.net/cover/${args.substring(ridiPrefix.length)}/xxlarge?dpi=xxhdpi#1`;
 
         const res = await fetch(imgUrl);
 
         writeFileSync(imgPath, await res.bytes());
     }
+
+    execSync(`git add ${postPath}`, { cwd: __dirname, stdio: 'inherit' });
+    execSync(`git commit -m "add ${name}"`, { cwd: __dirname, stdio: 'inherit' });
 }
 
 main().catch(e => console.error(e));
