@@ -28,6 +28,7 @@ async function main() {
     const escapedName = name
         .replaceAll(' ', '_')
         .replaceAll('?', '')
+        .replaceAll('"', '')
         .replaceAll(/\([^)]+\)/g, '');
 
     const now = new Date();
@@ -49,7 +50,7 @@ async function main() {
     }
 
     execSync(`git add ${postPath}`, { cwd: __dirname, stdio: 'inherit' });
-    execSync(`git commit -m "add ${name}"`, { cwd: __dirname, stdio: 'inherit' });
+    execSync(`git commit -m "add ${name.replaceAll('"', '\\"')}"`, { cwd: __dirname, stdio: 'inherit' });
 }
 
 main().catch(e => console.error(e));
