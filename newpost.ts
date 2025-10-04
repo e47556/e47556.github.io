@@ -29,6 +29,7 @@ async function main() {
         .replaceAll(' ', '_')
         .replaceAll('?', '')
         .replaceAll('"', '')
+        .replaceAll('~', '_')
         .replaceAll(/\([^)]+\)/g, '');
 
     const now = new Date();
